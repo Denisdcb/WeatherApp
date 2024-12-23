@@ -1,26 +1,33 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { WeatherService } from '../../services/weather.service';
-import { HttpClient } from '@angular/common/http';
+import { FormGroup, FormControl, ReactiveFormsModule } from '@angular/forms';
+import { HeaderComponent } from '../header/header.component';
 
 
 @Component({
   selector: 'app-weather-display',
   standalone: true,
-  imports: [],
+  imports: [ReactiveFormsModule, HeaderComponent],
   templateUrl: './weather-display.component.html',
   styleUrl: './weather-display.component.css'
 })
 export class WeatherDisplayComponent {
+
+  private weatherService: WeatherService = inject(WeatherService);
+
+  myForm = new FormGroup({
+      city: new FormControl(''),
+    });
+
   weather: any = [];
   main: any = [];
   city: string = '';
   temp: number = 0;
   tempFeels: number = 0;
 
-  private weatherService: WeatherService = inject(WeatherService);
-
-  ngOnInit(): void {
-    this.weatherService.getWeather('Montréal').subscribe(data => {
+  onSubmit() {
+    const formData = this.myForm.value.city;
+    this.weatherService.getWeather(this.myForm.value.city).subscribe(data => {
       this.weather = data.weather[0];
       this.main = data.main;
       this.city = data.name;
@@ -28,4 +35,5 @@ export class WeatherDisplayComponent {
       this.tempFeels = Math.round(this.main.feels_like - 273.15);
     });
   }
+
 }

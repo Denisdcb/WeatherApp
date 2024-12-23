@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { MainDisplayComponent } from './components/main-display/main-display.component';
+import { WeatherDisplayComponent } from './components/weather-display/weather-display.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, MainDisplayComponent],
+  imports: [RouterOutlet, WeatherDisplayComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

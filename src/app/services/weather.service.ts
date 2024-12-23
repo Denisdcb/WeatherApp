@@ -11,7 +11,7 @@ export class WeatherService {
   private geoUrl: string = 'http://api.openweathermap.org/geo/1.0/direct?q=';
   private weatherUrl: string = 'https://api.openweathermap.org/data/2.5/weather?lat=';
 
-  getWeather(city: string): Observable<any> {
+  getWeather(city: any): Observable<any> {
     return this.http.get<any>(this.geoUrl + city + '&appid=' + this.API_KEY).pipe(
       tap(data => {
         if (data.length === 0) {
