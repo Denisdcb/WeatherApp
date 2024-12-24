@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { WeatherService } from '../../services/weather.service';
 import { FormGroup, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { HeaderComponent } from '../header/header.component';
+import { Coords } from '../../types/Coords';
 
 
 
@@ -20,21 +21,16 @@ export class WeatherDisplayComponent {
       city: new FormControl('', [Validators.required, Validators.minLength(3)]),
     });
 
-  weather: any = [];
-  main: any = [];
-  city: string = '';
+  weather!: Coords;
   temp: number = 0;
-  tempFeels: number = 0;
+  tempFeel: number = 0;
 
   onSubmit() {
     const formData = this.myForm.value.city;
     this.weatherService.getWeather(formData!).subscribe(data => {
-      this.city = data.name;
-      this.main = data.main;
-      this.weather = data.weather[0];
+      this.weather = data;
       this.temp = Math.round(data.main.temp - 273.15);
-      this.tempFeels = Math.round(data.main.feels_like - 273.15);
+      this.tempFeel = Math.round(data.main.feels_like - 273.15);
     });
   }
-
 }
