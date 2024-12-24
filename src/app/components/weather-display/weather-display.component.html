@@ -2,11 +2,11 @@
 <div class="h-3/4 flex flex-col items-center">
   <form [formGroup]="myForm" (ngSubmit)="onSubmit()" class="w-1/3 h-1/3 mt-2 flex flex-col font-mono items-center">
       <input id="city" type="text" formControlName="city" class="form-input rounded-lg border-2 border-gray-500 text-center w-full mb-1" placeholder="Enter a city name">
-      <button type="submit" class="form-button w-full bg-sky-300 rounded-lg border-2 border-gray-500 text-center hover:bg-sky-600 font-bold">Search</button>
+      <button type="submit" [disabled]="myForm.invalid" class="form-button w-full bg-sky-300 rounded-lg border-2 border-gray-500 text-center hover:bg-sky-600 font-bold">Search</button>
   </form>
 
   @if(city !== '') {
-    <div class="bg-white rounded-lg w-1/3 h-1/2 text-lg font-mono">
+    <div class="bg-white rounded-lg w-1/3 h-1/2 text-lg font-mono p-2">
     <h2 class="text-center text-4xl font-bold font-mono underline mb-2">{{ city }}</h2>
     <p>Weather : {{ weather.main }}</p>
     <p>Description : {{ weather.description }}</p>
