@@ -1,7 +1,7 @@
 <app-header></app-header>
 <div class="h-3/4 flex flex-col items-center">
   <form [formGroup]="myForm" (ngSubmit)="onSubmit()" class="w-1/3 h-1/3 mt-2 flex flex-col font-mono items-center">
-      <input id="city" type="text" formControlName="city" class="form-input rounded-lg border-2 border-gray-500 text-center w-full mb-1" placeholder="Enter a city name">
+      <input id="city" type="text" formControlName="city" class="form-input rounded-lg border-2 border-gray-500 text-center w-full mb-1" placeholder="Enter a city name" autocomplete="off">
       <button type="submit" [disabled]="myForm.invalid" class="form-button w-full bg-sky-300 rounded-lg border-2 border-gray-500 text-center hover:bg-sky-600 font-bold">Search</button>
   </form>
 
