@@ -10,32 +10,11 @@
     <h2 class="text-center text-4xl font-bold font-mono underline mb-5">{{ weather.name }}</h2>
     <div class="h-3/4 flex justify-between flex-wrap">
       <div class="w-[45%] h-[45%] bg-blue-200 rounded-lg font-mono text-center font-bold flex flex-col justify-between">Weather :
-        @if(weather.weather[0].main === 'Clear') {
-          <p class="text-6xl">☀️</p>
-        }
-        @else if(weather.weather[0].main === 'Clouds') {
-          <p class="text-6xl">☁️</p>
-        }
-        @else if(weather.weather[0].main === 'Rain') {
-          <p class="text-6xl">🌧️</p>
-        }
-        @else if(weather.weather[0].main === 'Snow') {
-          <p class="text-6xl">❄️</p>
-        } @else {
-          <p class="text-6xl">🌥️</p>
-        }
+        <p class="text-6xl">{{ weatherEmoji }}</p>
         <p class="justify-self-end">{{ weather.weather[0].description }}</p>
       </div>
       <div class="w-[45%] h-[45%] bg-green-200 rounded-lg font-mono text-center font-bold">Temp :
-        @if(temp <= 5) {
-          <p class="mt-3 text-5xl text-blue-400">{{ temp }} °C</p>
-        }
-        @else if(temp > 5 && temp <= 25) {
-        <p class="mt-3 text-5xl text-yellow-400">{{ temp }} °C</p>
-        }
-        @else {
-          <p class="mt-3 text-5xl text-red-400">{{ temp }} °C</p>
-        }
+        <p class="mt-3 text-5xl text-{{ tempColor }}-400">{{ temp }} °C</p>
         <p class="mt-2">Feel Temp : {{ tempFeel }} °C</p>
       </div>
       <div class="w-[45%] h-[45%] bg-yellow-200 rounded-lg font-mono text-center font-bold mt-5">Humidity :
