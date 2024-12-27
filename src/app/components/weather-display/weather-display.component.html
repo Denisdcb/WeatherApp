@@ -14,7 +14,12 @@
         <p class="justify-self-end">{{ weather.weather[0].description }}</p>
       </div>
       <div class="w-[45%] h-[45%] bg-green-200 rounded-lg font-mono text-center font-bold">Temp :
-        <p class="mt-3 text-5xl text-{{ tempColor }}-400">{{ temp }} °C</p>
+        <p class="mt-3 text-5xl" [ngClass]="{
+          'text-blue-400': tempColor === 'blue',
+          'text-red-400': tempColor === 'red',
+          'text-yellow-400': tempColor === 'yellow',
+        }">{{ temp }} °C</p>
+        <p>{{ tempColor }}</p>
         <p class="mt-2">Feel Temp : {{ tempFeel }} °C</p>
       </div>
       <div class="w-[45%] h-[45%] bg-yellow-200 rounded-lg font-mono text-center font-bold mt-5">Humidity :

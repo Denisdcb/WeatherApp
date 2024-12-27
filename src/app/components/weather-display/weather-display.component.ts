@@ -1,4 +1,5 @@
 import { Component, inject } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { WeatherService } from '../../services/weather.service';
 import { FormGroup, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { HeaderComponent } from '../header/header.component';
@@ -9,7 +10,7 @@ import { Coords } from '../../types/Coords';
 @Component({
   selector: 'app-weather-display',
   standalone: true,
-  imports: [ReactiveFormsModule, HeaderComponent],
+  imports: [ReactiveFormsModule, HeaderComponent, CommonModule],
   templateUrl: './weather-display.component.html',
   styleUrl: './weather-display.component.css'
 })
@@ -45,15 +46,15 @@ export class WeatherDisplayComponent {
       else if(data.weather[0].main === 'Snow') {
         this.weatherEmoji = '❄️';
       }
-      if(this.temp <= 5) {
+      if(Math.round(data.main.temp - 273.15) <= 5) {
         this.tempColor = 'blue';
       }
-      else if(this.temp > 5 && this.temp <= 25) {
+      else if(Math.round(data.main.temp - 273.15) > 5 && Math.round(data.main.temp - 273.15) <= 25) {
         this.tempColor = 'yellow';
       } else {
         this.tempColor = 'red';
       }
     });
-    this.myForm.reset();
+
   }
 }
