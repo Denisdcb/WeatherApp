@@ -55,6 +55,6 @@ export class WeatherDisplayComponent {
         this.tempColor = 'red';
       }
     });
-
+    this.myForm.reset();
   }
 }
